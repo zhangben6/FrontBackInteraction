@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<textarea id="text1"></textarea>
+		<button id="btn">提交</button>
+		<textarea id="text2"></textarea>
+		<script type="text/javascript">
+			//敏感词过滤  
+			//思路： 把敏感词找出来 替换成 **
+			var oText1 = document.getElementById("text1")
+			var oText2 = document.getElementById("text2")
+			var oBtn = document.getElementById("btn")
+			oBtn.onclick = function(){
+				//习近平主持中共中央政治局会议 研究2018年经济工作
+				var valueStr = oText1.value
+				// 在正则中 | 表示或者
+				var reg = /习近平|中共|政治局/g
+				
+				var res = valueStr.replace(reg, function(s1){
+					//习近平  *** 
+					var result = ''
+					for(var i = 0;i < s1.length;i++){
+						result += "*"
+					}
+					return result
+				})
+				oText2.value = res
+			}
+			
+		</script>
+	</body>
+</html>

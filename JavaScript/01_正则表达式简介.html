@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//如何创建正则表达式？ new Date()  /abc/
+		var reg = new RegExp("abc")
+//		console.log(reg)
+		var str = "abc"
+		//拿str这个字符串去测试是否符合reg这个规则
+		//用到js里面内置的一个方法 test
+		console.log(reg.test(str))
+		
+		//判断一个数字
+		var str2 = "d"
+		//定义一个规则，这个规则表示的就是所有的数字  \d 表示的是所有的数字
+		var reg2 = new RegExp("\\d")
+		console.log(reg2.test(str2))
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var str = "dddabcde"
+			//需求：查询a 是否在字符串str中
+//			console.log(str.indexOf("a"))
+			//search 搜索，匹配子字符串是否在 字符串中，如果匹配上就返回具体的位置，如果没有匹配上返回-1
+//			console.log(str.search("a"))
+			//需求：查找 a+数字这种子字符串是否在 总字符串中
+			// a + 数字(大于等于1) 这种规则，用正则去建立这种规则
+			// 在正则中 + 号表示重复1次或者多次
+			// \d+ 
+			var reg = /a\d+/
+			var str2 = "adbab123ddd"
+			console.log(str2.search(reg))
+			//注意：里面可以接收正则表达式，和indexOf用法一样，区别：search可以接收正则表达式，可以去搜索匹配一些特殊的字符
+			//a123，符合正则规则的字符串有很多 例如：a1、a123、 a22
+//			indexOf通常只能给一个固定的字符串
+			// indexOf 执行效率要高些，如果单纯只是查询某个字符 建议使用indexOf
+		</script>
+	</body>
+</html>

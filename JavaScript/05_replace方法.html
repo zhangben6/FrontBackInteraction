@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var str = "床前明月光"
+			//注意： 字符串不能被改变，只有返回一个新的字符串
+			var str2 = str.replace("明月", "太阳")
+			console.log(str, str2)
+			
+			//把数字替换成 xxx
+			var str3 = "3343dsf234233dddaa444"
+			//g 表示 全局替换
+			var reg = /\d/g
+			var res = str3.replace(reg, "xxx")
+			console.log(res)
+			
+			//需求：匹配上数字，每个数字加1 ， 234567
+			var str4 = "123456"
+//			var str5 = ''
+//			for(var i=0; i< str4.length; i++){
+//				str5 += Number(str4[i])+1 
+//			}
+//			console.log(str5)
+			//replace 第二个参数可以是一个函数
+			//注意：函数执行完成后会有一个结果， 拿这个结果去替换
+			var str5 = str4.replace(reg, function(s){
+				//s: 1 2 3 4 5 6
+				return Number(s)+1
+			})
+			console.log(str5)
+		</script>
+	</body>
+</html>
