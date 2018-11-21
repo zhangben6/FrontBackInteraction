@@ -1,5 +1,7 @@
 '''Return different web pages based on user requestes
-    Ruturn the HTML  web page to the client'''
+    Ruturn the HTML  web page to the client
+            HTTPServer 2.0
+'''
 from socket import *
 import re
 
