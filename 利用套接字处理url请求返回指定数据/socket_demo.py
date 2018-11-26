@@ -7,13 +7,12 @@ import re
 
 def client_requ(client):
     '''处理用户的请求'''
-    
     #获取用户发送的数据
     recv_data = client.recv(1024).decode('utf-8')
     # print(recv_data)
     #提取用户请求的地址
     match = re.match('[^/]+(/[^ ]*) ',recv_data)
-    print(match)
+    print(match.group(1))
     if match:
         recv_path = match.group(1)
         if recv_path == '/':
@@ -32,7 +31,7 @@ def client_requ(client):
 
     #判断请求地址
     if recv_path =='index.html':
-        response_body = '郭童我喜欢你'
+        response_body = '<h1>郭童我喜欢你</h1>'
     elif recv_path == 'login.html':
         with open("./login.html",encoding='utf-8') as f:
             response_body = f.read()
@@ -45,10 +44,6 @@ def client_requ(client):
     client.send(response_data.encode('utf-8'))
 
     client.close()
-
-        
-
-
 
 def main():
     #创建流式套接字
