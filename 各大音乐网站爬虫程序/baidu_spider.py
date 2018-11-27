@@ -39,41 +39,57 @@ def song_processing(name):
     res = requests.post(mp3_info_api,data=data)
     #因为返回的数据json格式  直接调用json方法,转成字段
     info = res.json()
-    print(info)
+    # print(info)
     #下载歌曲
     #根据数据的结构,获取歌曲的信息
     song_info = info['data']['songList']
-    song_list = []
+    song_combine_list = []
+    song_link_sum = []
+    song_name_sum = []
     #循环接收每个歌曲的信息
     for song in song_info:
+        # print(song)
         #根据数据结构获取信息
         song_name = song['songName']
-        print(song_name)
-        song_list.append(song_name)
-        
+        if song_name == None:
+            break
+        song_name_sum.append(song_name)
+        song_author = song['artistName']
+        song_combine = 'Music:%s--author:%s' % (song_name,song_author)
+        song_combine_list.append(song_combine)
+
         #接着获取歌曲的mp3下载地址
         song_link = song['songLink']
-
+        song_link_sum.append(song_link)
         #获取歌名的后缀格式fomat 
         for_mat = song['format']
 
         #歌词的下载地址
         lrc_link = song['lrcLink']
+    # print(song_combine_list)
+    print('以下是您搜索的结果:')
+    #根据此列表下载对应的歌曲
+    for k,v in enumerate(song_combine_list):
+        print(k,v)
+    # print(song_link_sum)
+    download_music(song_name_sum,song_link_sum,for_mat)
 
-def download_music():
+    
+def download_music(song_name_sum,song_link_sum,for_mat):
+    num = int(input("请输入您要下载的歌曲："))
+    song_name = song_name_sum[num]
+    download_music_link = song_link_sum[num]         
     #下载mp3
-    if song_link: #有可能没有地址
-        song_res = requests.get(song_link)
+    if download_music_link: #有可能没有地址
+        song_res = requests.get(download_music_link)
         with open('%s.%s'%(song_name,for_mat),'wb') as f:
             f.write(song_res.content)
-            print(song_link)
-    if lrc_link:
-        lrc_response = requests.get(lrc_link)
-        with open('%s.lrc' % song_name,'w',encoding='gbk') as f:
-            f.write(lrc_response.text)
-            f.close()
-
-
+            print("恭喜您下载成功")
+    # if lrc_link:
+    #     lrc_response = requests.get(lrc_link)
+    #     with open('%s.lrc' % song_name,'w',encoding='gbk') as f:
+    #         f.write(lrc_response.text)
+    #         f.close()
 
 def main():
     name = input('请输入您要下载的 歌名 or 歌手:')
