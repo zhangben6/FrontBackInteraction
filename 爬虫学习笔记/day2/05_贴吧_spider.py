@@ -1,6 +1,6 @@
 import urllib.request
 import urllib.parse
-
+import chardet
 def loadPage(url,filename):
     '''
     作用:根据url发送请求,获取服务器响应文件
@@ -11,9 +11,15 @@ def loadPage(url,filename):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
     }
-    request = urllib.request.Request(url,headers = headers)
-    response = urllib.request.urlopen(request)    
-    return response.read()
+    # request = urllib.request.Request(url,headers = headers)
+    # response = urllib.request.urlopen(request) 
+    # response.encoding = 'utf8'   
+    # html = response.read()
+    # chardit1 = chardet.detect(html)
+    # print(chardit1['encoding'])
+    # return html
+    request = urllib.request.Request(url, headers = headers)
+    return urllib.request.urlopen(request).read()
 
 
 
@@ -23,7 +29,7 @@ def writePage(html,filename):
         html:服务器相应文件内容
     '''
     print('正在保存'+filename)
-    with open(filename,'w') as f:
+    with open(filename,'wb') as f:
         f.write(html)
     print('-' * 30)
 
@@ -37,7 +43,7 @@ def tiebaSpider(url,beginPage,endPage):
         pn = (page - 1) * 50
         filename = '第' + str(page) + '页.html'
         fullurl = url + '&pn=' + str(pn)
-        # print(fullurl) #debug
+        print(fullurl) #debug
          
         #把拼接好需要下载的url传给loadpage函数
         html = loadPage(fullurl,filename)
