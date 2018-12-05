@@ -74,7 +74,7 @@ class HTTPServer(object):
         elif get_request[-4:] == '.css':
             self.get_css(connfd,get_request)
 
-        elif get_request == '/images/timg.gif':
+        elif get_request == '/images/bg.png':
             self.get_image(connfd,get_request)
 
         # elif get_request == '/js/index.js':
@@ -203,7 +203,7 @@ class HTTPServer(object):
 
 
 # 提供服务器地址和静态文件路径
-server_addr = ('0.0.0.0', 7000)
+server_addr = ('0.0.0.0', 9000)
 static_dir = "C:/Users/Administrator/Desktop/PersonalSystem/static_WebPages"
 css_dir = "C:/Users/Administrator/Desktop/PersonalSystem"
 images_dir = "C:/Users/Administrator/Desktop/PersonalSystem"
