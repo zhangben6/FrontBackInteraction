@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>jQuery支持PC手机音乐播放器插件 - 站长素材</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+
+
+<body>
+<div id="example-wrapper">
+    <ul id="example-size-picker">
+        <li data-size="mobile">Mobile</li>
+        <li data-size="large">Large</li>
+        <li data-size="full">Full Screen</li>
+    </ul>
+    <div id="example-outer">
+        <div id="example" data-size="large">
+
+        </div>
+    </div>
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/ttw-clarity-player.js"></script>
+<script src="js/yepnope.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var myPlaylist = [
+            {
+                mp3:'playlist/yangcong.mp3',
+                duration:'2:21',
+                cover:'playlist/covers/yangcong.jpg',
+                title:'洋葱',
+                artist:'平安',
+                background:'playlist/covers/bg.jpg'
+            },
+            {
+                mp3:'playlist/Sugar.mp3',
+                duration:'3:55',
+                cover:'playlist/covers/Maroon5.jpg',
+                title:'Maroon 5 - Sugar',
+                artist:'Maroon 5',
+                background:'playlist/covers/bg.jpg'
+            },
+            {
+                mp3:'playlist/yangcong.mp3',
+                duration:'3:49',
+                cover:'playlist/covers/jay.jpg',
+                title:'你听得到 - 无与伦比演唱会',
+                artist:'周杰伦',
+                background:'playlist/covers/bg.jpg'
+            }
+        ];
+		
+        var clarity = $('#example').ttwClarityPlayer(myPlaylist,{
+				jPlayer:{
+					supplied:'mp3',
+					errorAlerts:true,	
+					autoPlay:true,				
+					warningAlerts:true,
+					consoleAlerts:true
+				}
+			});
+        
+		$('#example-size-picker').on('click', 'li', function(){
+            $('#example').attr('data-size', $(this).data('size'));
+            clarity.manageLayout();
+        });
+    });
+</script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://sc.chinaz.com/" target="_blank">站长素材</a></p>
+</div>
+</body>
+</html>
