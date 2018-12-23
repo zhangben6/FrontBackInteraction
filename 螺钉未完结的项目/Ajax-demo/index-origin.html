@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .mes{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+用户名: <input type="text" id="username" placeholder="用户名为5-10个字符"> <span class="mes"></span>
+<script>
+     //当input失去焦点，就要去验证用户名是否存在
+    var oIpt = document.getElementById('username');
+    var oSpan = document.getElementsByClassName('mes')[0]
+    oIpt.onblur = function (ev) {
+      var iptValue = this.value;
+    //  发送数据到后台？没有表单
+      var xhr = new XMLHttpRequest();
+      xhr.open('get', '/index?username='+iptValue, true);
+      xhr.send();
+      xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4 && xhr.status === 200){
+        //   oSpan.innerHTML = xhr.responseText;
+          //xhr.responseText 这是一个json字符串
+          var obj = JSON.parse(xhr.responseText);
+          oSpan.innerHTML = obj.message;
+        }
+      }
+    }
+</script>
+</body>
+</html>

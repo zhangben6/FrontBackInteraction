@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .mes{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+用户名: <input type="text" id="username" placeholder="用户名为5-10个字符"> <span class="mes"></span>
+<script>
+     //当input失去焦点，就要去验证用户名是否存在
+    var oIpt = document.getElementById('username');
+    var oSpan = document.getElementsByClassName('mes')[0]
+    oIpt.onblur = function (ev) {
+        //XMLHttpRequests对象 客户端与服务端之间传输数据
+        // try catch finally
+        var xhr = null
+        //1.相当于打开浏览器
+        try{
+            xhr = new XMLHttpRequest();
+        }catch(e){
+            xhr = new ActiveXObject('Microsoft.XMLHTTP')
+        }
+        alert(xhr.readystate)
+        //2.输入网址,指定发送方式和地址以及是否异步
+        xhr.open('get','/index',true);
+
+        //点击按钮,发送数据
+        xhr.send();
+
+        //监听数据
+        xhr.onreadystatechange = function(ev){
+            console.log(1);
+        }
+    }
+</script>
+</body>
+</html>
