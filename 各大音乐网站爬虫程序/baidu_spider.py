@@ -76,7 +76,7 @@ def song_processing(name):
 
     
 def download_music(song_name_sum,song_link_sum,for_mat):
-    num = int(input("请输入您要下载的歌曲："))
+    num = int(input("please enter singName："))
     song_name = song_name_sum[num]
     download_music_link = song_link_sum[num]         
     #下载mp3
@@ -92,9 +92,8 @@ def download_music(song_name_sum,song_link_sum,for_mat):
     #         f.close()
 
 def main():
-    name = input('请输入您要下载的 歌名 or 歌手:')
+    name = input('please enter name or singName:')
     song_processing(name)
     
 if __name__ == "__main__":
     main()
-    
